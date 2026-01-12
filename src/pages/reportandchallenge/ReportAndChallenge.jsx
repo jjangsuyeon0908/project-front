@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import ChallengeList from './components/ChallengeList';
-import ChallengeCompleteModal from './components/ChallengeCompleteModal';
+import ChallengeList from '../../components/reportchallengecomponents/ChallengeList';
+import ChallengeCompleteModal from '../../components/reportchallengecomponents/ChallengeCompleteModal';
+
 
 const ReportAndChallenge = () => {
   return (

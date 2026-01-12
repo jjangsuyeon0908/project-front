@@ -14,7 +14,7 @@ export const flexBeetweenRow = css`
   flex-direction: row;
 `
 
-export const flexBeetweenColumn = css`
+export const flexBetweenColumn = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
