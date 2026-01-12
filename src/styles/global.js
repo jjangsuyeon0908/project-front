@@ -106,16 +106,26 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
-* {
+  * {
     box-sizing: border-box;
+    /* 🟢 추가: 모바일 기기 터치 시 발생하는 파란색 하이라이트 제거 */
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
-    font-family: 'pretendard', sans-serif; /* 폰트 로드 실패 시 대비용 sans-serif 추가 */
-    text-shadow: 0 0 1px rgba(0, 0, 0, 0.05); /* 2px은 때로 흐려보일 수 있어 1px 추천 */
+    /* 🟡 수정: 시스템 기본 폰트(Fall-back)를 더 상세하게 추가하여 로딩 안정성 확보 */
+    font-family: 'pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
     letter-spacing: -0.2px;
     color: #131313;
-    line-height: 1.3;
+
+    /* 🟡 수정: 본문 가독성을 위해 행간을 1.3 -> 1.5로 가이드에 맞춰 상향 */
+    line-height: 1.5; 
+
+    /* 🟢 추가: 맥(macOS) 브라우저에서 폰트 테두리를 더 매끄럽게 렌더링 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a {
@@ -123,9 +133,10 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
-  /* 폼 요소 폰트 및 스타일 초기화 */
   button, input, textarea, select {
     font-family: inherit;
+    /* 🟢 추가: 폼 요소가 부모의 글자 크기를 강제로 상속받도록 설정 */
+    font-size: inherit; 
     color: inherit;
   }
 
@@ -133,7 +144,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: none;
     background: none;
-    padding: 0; /* 버튼 기본 패딩 제거 */
+    padding: 0;
+  }
+
+  /* 🟢 추가: 클릭할 수 없는 상태의 버튼에 대한 커서 스타일 정의 */
+  button:disabled {
+    cursor: default;
   }
 
   input, textarea {
@@ -141,15 +157,19 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
-  /* 입력창 활성화 시 피드백 통합 */
   input:focus, textarea:focus {
     border-color: #333;
   }
 
-  /* 텍스트 영역 크기 조절 방지 (선택 사항) */
   textarea {
     resize: none;
   }
 
+  /* 🟢 추가: 이미지가 부모 영역을 벗어나지 않게 하고 하단 공백 제거 */
+  img {
+    max-width: 100%;
+    display: block;
+  }
 `;
+
 export default GlobalStyle;

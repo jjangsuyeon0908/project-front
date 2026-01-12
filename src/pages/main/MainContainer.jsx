@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MainTitle } from "./style";
 
 const MainContainer = () => {
   return (
     <div>
-      <h1>메인 컨테이너</h1>
+      <MainTitle>메인 컨테이너</MainTitle> {/*common.js 폰트 스타일 적용 샘플*/}
       <p>컴포넌트</p>
       <p>컴포넌트</p>
       <p>컴포넌트</p>
