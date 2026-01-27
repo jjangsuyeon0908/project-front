@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexCenter, flexCenterColumn, FONT_STYLE } from "../../styles/common";
+import { flexBetweenColumn, flexCenter, flexCenterColumn, FONT_STYLE } from "../../styles/common";
 import theme from "../../styles/theme";
 import { Link } from "react-router-dom";
 
@@ -142,3 +142,58 @@ cursor: pointer;
   filter:brightness(0.9);
 }
 `
+export const JoinScreen = styled.div`
+width: 100%;
+height: 100%;
+${flexCenter}
+`
+
+export const JoinH1 = styled.div`
+  ${FONT_STYLE.GIANTS.H3_BOLD};
+  ${flexCenter};
+  color : ${theme.PALLETE.hederandfooter};
+  margin: 40px 0px;
+`
+
+export const JoinContainer = styled.div`
+width:360px;
+height:600px;
+${flexCenterColumn};
+gap: 10px;
+`
+
+export const JoinByKakaoContainer = styled.label`
+width: calc(100% - 30px);
+${flexCenter};
+background-color: #ffe940;
+border-radius: 5px;
+cursor:pointer;
+`
+
+export const JoinByKakaoSpan = styled.span`
+${FONT_STYLE.PRETENDARD.H7_BOLD};
+color: ${theme.PALLETE.mainblack};
+`
+
+export const JoinBannerContainer = styled.div`
+width : 360px;
+height: 120px;
+${flexCenter};
+/* position: relative; */
+`
+
+export const JoinBanner = styled.img`
+width: 330px;
+object-fit : cover;
+border-radius:10px;
+`
+
+/* export const BannerText = styled.span`
+  position: absolute;
+  top: 50%;          
+  left: 5%;          
+  transform: translate(-50%, -50%); 
+  
+  color: white;       
+  font-weight: bold;
+`; */
