@@ -1,32 +1,11 @@
 import styled from "styled-components";
 import { flexCenter, flexCenterColumn } from "../../styles/common";
 
-/* =========================
-   페이지 전체 레이아웃
-========================= */
+/* ====================
+      공통 버튼
+=================== */
 
-// MyFridge 페이지 최상위 wrapper
-export const Page = styled.main`
-  width: 100%;
-  min-height: 100vh;  // 화면 높이 최소 100%
-  background: ${({ theme }) => theme.PALLETE.background.white};
-`;
-
-// 페이지 내부 컨텐츠 중앙 정렬용 wrapper
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;  // 가로 중앙 정렬
-  gap: 24px;            // 내부 요소 간 간격
-  padding-top: 200px;   // 상단 여백 (헤더 고려)
-`;
-
-
-/* =========================
-   메인 버튼
-========================= */
-
-// "냉장고를 채워볼까요?" 버튼
+// Empty 화면, 모달 등에서 사용하는 메인 버튼
 export const AddButton = styled.button`
   width: 298px;
   height: 56px;
@@ -35,7 +14,7 @@ export const AddButton = styled.button`
   border-radius: 5px;
   background-color: transparent;
 
-  ${flexCenter}         // 내부 텍스트 가로/세로 중앙
+  ${flexCenter}
 
   font-family: 'Pretendard';
   font-size: ${({ theme }) => theme.FONT_SIZE.h5};
@@ -45,165 +24,300 @@ export const AddButton = styled.button`
   cursor: pointer;
 `;
 
+// 상단 "재료 추가 / 삭제 / 수정" 버튼
+export const LayoutAddButton = styled.button`
+  width: 87px;
+  height: 36px;
 
-/* =========================
-   재료 카드 (Grid 내부)
-========================= */
+  border: 1px solid #FF4D26;
+  border-radius: 5px;
+  background-color: transparent;
 
-// 재료 카드 박스 스타일
+  ${flexCenter}
+
+  font-family: 'Pretendard';
+  font-size: ${({ theme }) => theme.FONT_SIZE.h8};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.PRETENDARD.BOLD};
+
+  color: #262626;
+  cursor: pointer;
+`;
+
+
+/* ==================================================
+   1. MyFridge 페이지 전체 레이아웃
+================================================== */
+
+// 페이지 최상위 컨테이너
+// - 최대 폭 1200px
+// - 화면 중앙 정렬
+export const MyFridgeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+`;
+
+/* ==================================================
+   2. 상단 고정 영역 (헤더 / 카테고리 / 정렬)
+================================================== */
+
+// 헤더 + 카테고리 + 정렬 영역 wrapper
+export const TopFixedSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 80px;
+`;
+
+// "나의 냉장고" 타이틀 + 버튼 영역
+export const FridgeHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+// 재료 추가 / 삭제 / 수정 버튼 묶음
+export const FridgeButtonGroup = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+// 헤더 아래 (카테고리 + 추천/정렬)
+export const FridgeTopSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+/* ------------------
+   카테고리 탭
+------------------ */
+
+// 카테고리 버튼 줄
+export const CategoryRow = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+`;
+
+// 개별 카테고리 버튼
+export const LayoutCategoryTab = styled.button`
+  width: 90px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+
+  background-color: ${({ active }) =>
+    active ? "#FF6B4A" : "#E0E0E0"};
+
+  color: ${({ active }) =>
+    active ? "#FFFFFF" : "#777777"};
+`;
+
+/* ------------------
+   추천 / 정렬 영역
+------------------ */
+
+export const TopInfoRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+/* ==================================================
+   3. Empty 상태 (재료 없을 때)
+================================================== */
+
+export const EmptyWrapper = styled.div`
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: calc(100vh - 260px);
+`;
+
+/* ==================================================
+   4. 재료 카드 & Grid
+================================================== */
+
+/* ------------------
+   카드 Hover 정보
+------------------ */
+
+export const HoverInfo = styled.div`
+  position: absolute;
+  top: -8px;
+  left: 105%;
+  width: 180px;
+
+  background-color: #ffffff;
+  border: 1px solid #ff4e37;
+  border-radius: 8px;
+  padding: 12px;
+
+  font-size: 12px;
+  color: #262626;
+  line-height: 1.4;
+
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+
+  transition: all 0.2s ease;
+  z-index: 20;
+`;
+
+/* ------------------
+   재료 카드
+------------------ */
+
 export const CardStyle = styled.div`
-  ${flexCenterColumn}   // 아이콘 + 텍스트 세로 정렬
-  height: 120px;        // 카드 높이 고정
+  position: relative;
+  ${flexCenterColumn}
+
+  height: 120px;
   border-radius: 10px;
   background-color: #fff;
   box-sizing: border-box;
-  border: solid #E9E9EC 1px;
 
-  /* 기본 / 선택 border */
   border: 2px solid
-    ${({ active }) => (active ? '#FF4E37' : '#E9E9EC')};
+    ${({ active }) => (active ? "#FF4E37" : "#E9E9EC")};
+
+  &:hover ${HoverInfo} {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
-
-// 재료 카드 텍스트 (이름)
 export const CardTextStyle = styled.p`
-  font-family: 'Pretendard';
   font-size: ${({ theme }) => theme.FONT_SIZE.h8};
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT.PRETENDARD.LIGHT};
+  font-weight: ${({ theme }) =>
+    theme.FONT_WEIGHT.PRETENDARD.LIGHT};
 `;
 
-
-// 재료 카드 아이콘 영역
 export const IconStyle = styled.div`
   font-size: 32px;
   margin-bottom: 8px;
 `;
 
+/* ------------------
+   재료 카드 Grid
+------------------ */
 
-/* =========================
-   재료 카드 Grid (페이지)
-========================= */
-
-// Grid 전체 폭을 잡아주는 wrapper
+// Grid 전체 폭 wrapper
 export const GridWrapperStyle = styled.div`
   width: 1420px;
-  margin: 0 auto; // 화면 가운데 정렬
+  margin: 0 auto;
 `;
 
-// 재료 카드 Grid
+// 실제 Grid
 export const GridStyle = styled.div`
   display: grid;
-  grid-template-columns: repeat(10, 1fr); // 한 줄에 카드 10개
+  grid-template-columns: repeat(10, 1fr);
   gap: 16px;
 `;
 
+/* ==================================================
+   5. 모달 공통
+================================================== */
 
-/* =========================
-   모달 공통 (배경 + 컨테이너)
-========================= */
-
-// 화면 전체를 덮는 반투명 배경
+// 화면 전체 오버레이
 export const ModalOverlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+
   background-color: rgba(0, 0, 0, 0.5);
-  ${flexCenter}         // 모달을 화면 중앙에 배치
+  ${flexCenter}
+
   z-index: 1000;
 `;
 
-// 모달 박스 본체 (공통 컨테이너)
-export const ModalContainer = styled.div`
+// 모달 본체
+export const ModalContent = styled.div`
   width: 920px;
   height: 720px;
+
   background-color: #fff;
   border-radius: 12px;
-  padding: 24px;
 
   display: flex;
-  flex-direction: column; // Header / Body / Footer 세로 배치
+  flex-direction: column;
 `;
 
+/* ==================================================
+   6. AddIngredientDetailModal 전용
+================================================== */
 
-/* =========================
-   AddIngredientDetailModal
-========================= */
-
-// 카테고리 탭 영역 wrapper
+// 상단 카테고리 탭 영역
 export const ModalHeader = styled.div`
   display: flex;
   margin-bottom: 24px;
 `;
 
-// 카테고리 선택 버튼
+// 카테고리 버튼
 export const CategoryTab = styled.button`
-  width: 180px;     // 디자인 기준 가로
-  height: 64px;     // 디자인 기준 세로
+  width: 180px;
+  height: 64px;
+
   border: none;
-
-   /* 활성 / 비활성 배경색 */
-  background-color: ${({ active }) => active ? '#FFFFFF' : '#DDDDDD'};
-
-  color: ${({ active }) => (active ? '#FF4E37' : '#898989')};
-
   ${flexCenter}
 
-  font-family: 'Pretendard';
+  background-color: ${({ active }) =>
+    active ? "#FFFFFF" : "#DDDDDD"};
+
+  color: ${({ active }) =>
+    active ? "#FF4E37" : "#898989"};
+
   font-size: ${({ theme }) => theme.FONT_SIZE.h6};
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT.PRETENDARD.MEDIUM};
+  font-weight: ${({ theme }) =>
+    theme.FONT_WEIGHT.PRETENDARD.MEDIUM};
 
   cursor: pointer;
-  transition: all 0.2s ease; // 클릭 시 부드러운 전환
+  transition: all 0.2s ease;
 `;
 
-// 모달 내부 전체 레이아웃 컨테이너
-export const ModalContent = styled.div`
-  width: 920px;
-  height: 720px;
-  background-color: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-`;
-
-// Header 아래, Grid + 선택 영역을 감싸는 body
+// 모달 Body
 export const ModalBody = styled.div`
-  flex: 1;                 // 남은 높이 전부 사용
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 24px;
 `;
 
-
-/* =========================
-   재료 선택 Grid (스크롤 영역)
-========================= */
-
-// 재료 카드 grid 영역 (스크롤 대상)
+// 재료 선택 Grid
 export const ModalGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(8, 127.64px); /* 카드 크기 고정 */
+  grid-template-columns: repeat(8, 127.64px);
   gap: 16px;
+
   flex: 1;
-  overflow-y: auto;     /* 세로 스크롤 */
-  overflow-x: hidden;   /* 가로 스크롤 제거 */
+  overflow-y: auto;
+  overflow-x: hidden;
+
   padding: 16px 0;
 `;
 
-
-/* =========================
+/* ------------------
    선택된 재료 리스트
-========================= */
+------------------ */
 
-// 선택된 재료 전체 영역
-export const SelectedList = styled.div`
-  border-top: 1px solid #E9E9EC;
-  padding-top: 16px;
-`;
-
-// 선택 목록 헤더 (재료명 / 수량 / 유통기한)
 export const SelectedHeader = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -211,7 +325,6 @@ export const SelectedHeader = styled.div`
   margin-bottom: 8px;
 `;
 
-// 선택된 재료 한 줄
 export const SelectedRow = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -220,30 +333,17 @@ export const SelectedRow = styled.div`
   margin-bottom: 8px;
 `;
 
-// 선택 영역 wrapper (테이블 전체)
 export const SelectedSection = styled.div`
   border-top: 1px solid #E9E9EC;
   padding-top: 16px;
 `;
 
-
-/* =========================
+/* ------------------
    모달 하단 버튼
-========================= */
+------------------ */
 
-// 하단 버튼 중앙 정렬 영역
 export const ModalFooter = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 16px;
 `;
-
-
-
-
-
-
-
-
-
-
