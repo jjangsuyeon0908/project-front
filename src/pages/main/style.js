@@ -6,58 +6,48 @@ import { FONT_STYLE } from "../../styles/common";
 export const HeroWrapper = styled.section`
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 600px;
   overflow: hidden;
 
   .swiper,
   .swiper-wrapper,
   .swiper-slide {
-    height: 520px;
+    height: 600px;
+    background-color: red;
   }
 `;
 
 export const HeroSlide = styled.div`
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 600px;
   display: flex;
   align-items: center;
 
   background-image: url(${({ $bg }) => $bg});
   background-size: cover;
   background-position: center;
-
-  /* &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(0, 0, 0, 0.35) 35%,
-      rgba(0, 0, 0, 0) 70%
-    );
-  } */
 `;
 
 export const HeroContent = styled.div`
   position: relative;
-  margin-left: 120px;
+  margin-left: clamp(20px, 13vw, 380px);
   max-width: 560px;
   color: ${({ theme }) => theme.PALLETE.white};
 `;
 export const HeroTitle = styled.h2`
   ${FONT_STYLE.GIANTS.H3_BOLD};
   color: ${({ theme }) => theme.PALLETE.primary.main};
-  line-height: 1.1;
-  margin-bottom: 14px;
+  line-height: 1.3;
+  margin-bottom: 20px;
 `;
 
 export const HeroDesc = styled.p`
   ${FONT_STYLE.GIANTS.BODY2_REGULAR};
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.7;
-  margin-bottom: 22px;
+  font-size: ${({ theme }) => theme.FONT_SIZE.h7};
+  line-height: 1.4;
+  margin-bottom: 24px;
 `;
 
 export const HeroButton = styled.button`
@@ -70,9 +60,11 @@ export const HeroButton = styled.button`
   height: 40px;
   padding: 0 18px;
   border-radius: ${({ theme }) => theme.RADIUS.sm};
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1px solid  ${({ theme }) => theme.PALLETE.primary.main};
   background: ${({ theme }) => theme.PALLETE.white};
-  color: #222;
+  color: ${({ theme }) => theme.PALLETE.headerandfooter};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.PRETENDARD.SEMIBOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.h7};
   cursor: pointer;
 
   span {
@@ -80,30 +72,21 @@ export const HeroButton = styled.button`
     font-size: 18px;
     transform: translateY(-1px);
   }
-
-  &:hover {
-    background: ${({ theme }) => theme.PALLETE.primary.main};
-    border-color: ${({ theme }) => theme.PALLETE.primary.main};
-    color: ${({ theme }) => theme.PALLETE.white};
-
-    span {
-      color: ${({ theme }) => theme.PALLETE.white};
-    }
-  }
 `;
 
 
 /* ===== 컨트롤바 ===== */
 export const HeroControlBar = styled.div`
   position: absolute;
-  left: 120px;
+  left: clamp(20px, 10vw, 350px);
   bottom: 28px;
   z-index: 30;
-
   display: inline-flex;
   align-items: center;
   gap: 16px;
-
+  background-color: #0000004b;
+  padding: 5px 15px;
+  border-radius: 999px;
   color: rgba(255, 255, 255, 0.9);
 `;
 
@@ -132,8 +115,8 @@ export const ControlBtn = styled.button`
   /* 왼쪽 동그라미 버튼 (pause/play 토글) */
   &.pause {
     position: relative;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 9999px;
     border: 2px solid rgba(255, 255, 255, 0.6);
   }
@@ -180,7 +163,7 @@ export const ControlBtn = styled.button`
     content: "";
     position: absolute;
     left: 11px;
-    top: 8px;
+    top: 7px;
     width: 0;
     height: 0;
     border-top: 6px solid transparent;
@@ -208,11 +191,11 @@ export const HeroArrowButton = styled.button`
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 
   &.left {
-    left: 40px;
+    left: clamp(20px, 6vw, 250px);
   }
 
   &.right {
-    right: 40px;
+    right: clamp(20px, 6vw, 250px);
   }
 
   &:hover {
@@ -319,3 +302,156 @@ export const StepPoint = styled.strong`
 export const StepTextArea = styled.div`
 `;
 
+/* ===== MainRecipe Section ===== */
+
+export const RecipeWrapper = styled.section`
+  width: 100%;
+  padding: 34px 0 80px;
+  background: ${({ theme }) => theme.PALLETE.white};
+`;
+
+export const RecipeInner = styled.div`
+  width: 1420px;
+  margin: 0 auto;
+`;
+
+export const RecipeTitle = styled.h2`
+  ${FONT_STYLE.GIANTS.H3_BOLD};
+  color: ${({ theme }) => theme.PALLETE.mainblack};
+  font-size: 26px;
+  line-height: 1;
+  margin-bottom: 16px;
+`;
+
+export const RecipeTabs = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+`;
+
+export const RecipeTab = styled.button`
+  border: 0;
+  cursor: pointer;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.PALLETE.gray[50]};
+  color: ${({ theme }) => theme.PALLETE.mainblack};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT?.PRETENDARD?.BOLD || 700};
+  font-size: 14px;
+  line-height: 1;
+
+  &.is-active {
+    background: ${({ theme }) => theme.PALLETE.mainblack};
+    color: ${({ theme }) => theme.PALLETE.white};
+  }
+`;
+
+export const RecipePanel = styled.div`
+  position: relative;
+
+  .swiper {
+    padding: 8px 0 16px;
+  }
+  .swiper-slide {
+    height: auto;
+    width: 260px !important;   /* 카드 한장의 실제 폭 */
+  }
+`;
+
+export const RecipeCard = styled.div`
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: ${({ theme }) => theme.PALLETE.white};
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); */
+  cursor: pointer;
+
+  &:hover {
+    /* box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12); */
+  }
+`;
+
+export const RecipeThumb = styled.div`
+  width: 100%;
+  height: 190px;
+  background: ${({ theme }) => theme.PALLETE.gray[50]};
+  border-radius: 12px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+`;
+
+export const RecipeBody = styled.div`
+  padding: 12px 12px 14px;
+`;
+
+export const RecipeName = styled.div`
+  ${FONT_STYLE.GIANTS.BODY1_BOLD};
+  color: ${({ theme }) => theme.PALLETE.mainblack};
+  font-size: ${({ theme }) => theme.FONT_SIZE.h6};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.PRETENDARD.BOLD};
+  margin-bottom: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const BadgeRow = styled.div`
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 18px;
+`;
+
+
+export const Badge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 15px;
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.PRETENDARD.MEDIUM};
+  line-height: 1;
+
+  &.star {
+    background: #ffefe6;
+    color: ${({ theme }) => theme.PALLETE.primary.main};
+
+    i {
+      font-style: normal;
+      font-size: 15px;
+      transform: translateY(-1px);
+    }
+  }
+
+  &.xp {
+    background: #e7faf2;
+    color: #017a5a;
+  }
+`;
+
+export const MetaRow = styled.div`
+  display: flex;
+  gap: 14px;
+`;
+
+export const MetaChip = styled.span`
+  ${FONT_STYLE.GIANTS.CAPTION_REGULAR};
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: ${({ theme }) => theme.PALLETE.gray[50]};
+  color: ${({ theme }) => theme.PALLETE.gray700};
+  font-size: ${({ theme }) => theme.FONT_SIZE?.h7 || "12px"};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT?.PRETENDARD?.MEDIUM || 500};
+  line-height: 1;
+`;

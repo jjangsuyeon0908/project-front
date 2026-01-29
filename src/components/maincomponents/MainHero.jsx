@@ -38,7 +38,7 @@ const slides = [
       "만들 수 있는 요리를 우선순위로 추천해요.\n" +
       "재료 낭비 없이 맛있게 즐겨요!",
     cta: "추천 요리 보러가기",
-    bg: `${process.env.PUBLIC_URL}/assets/images/main/hero-2.jpg`,
+    bg: `${process.env.PUBLIC_URL}/assets/images/main/visual02.jpg`,
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ const slides = [
       "XP가 쌓이고 뱃지와 레벨이 올라가요.\n" +
       "게임처럼 즐기며 성장해요!",
     cta: "인증하러 가기",
-    bg: `${process.env.PUBLIC_URL}/assets/images/main/hero-3.jpg`,
+    bg: `${process.env.PUBLIC_URL}/assets/images/main/visual03.jpg`,
   },
 ];
 
