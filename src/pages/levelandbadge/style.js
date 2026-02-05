@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 import { Link } from "react-router-dom";
 
 export const LevelAndBadgeScreen = styled.div`
-  width: 1920px;
+  width: 100%;
   ${flexCenterColumn};
 `;
 
