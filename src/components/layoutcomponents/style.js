@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { flexCenter, FONT_STYLE } from "../../styles/common";
+import theme from "../../styles/theme";
 
 // 플로팅 액션 섹션
 export const FloatingWrapper = styled.div`
@@ -79,9 +81,13 @@ export const LogoArea = styled(Link)`
   white-space: nowrap;
 `;
 
-export const LogoIcon = styled.span`
-  color: #ff3b30;
-  font-size: 18px;
+export const LogoWrap = styled.div`
+  ${flexCenter};
+  gap: 5px;
+`;
+
+export const LogoIcon = styled.img`
+  height: 33px;
 `;
 
 export const LogoText = styled.span`
@@ -182,7 +188,6 @@ export const NavItem = styled(Link)`
     text-decoration: underline;
   }
 `;
-
 
 /* ========== Footer styles ========== */
 
@@ -369,3 +374,94 @@ export const PlusBtn = styled.button`
     background: #e2e2e2;
   }
 `;
+
+/* ================= ProfileBar styles ================= */
+export const SidebarContainer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 390px;
+  height: 100vh;
+  background-color: white;
+  z-index: 1000;
+  padding: 35px;
+
+  /* [핵심] isOpen 상태에 따라 위치를 이동시킴 */
+  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
+  visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
+  transition: transform 0.3s ease-in-out, visibility 0.3s;
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(81, 81, 81, 0.44);
+  z-index: 999;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+`;
+
+export const CloseButton = styled.button`
+  margin: 0 0 100% 0;
+`;
+
+export const ProfileImgWrap = styled.div`
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ProfileTitles = styled.p`
+  ${FONT_STYLE.PRETENDARD.H6_BOLD};
+  margin: 10px 0 10px 0;
+  color: ${theme.PALLETE.headerandfooter};
+`;
+
+export const ProfileUserInfoContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const ProfileUserName = styled.span`
+  ${FONT_STYLE.PRETENDARD.H7_SEMIBOLD};
+  margin: 0 10px 0 0;
+`;
+export const ProfileUserLevel = styled.div`
+  width: 70px;
+  height: 28px;
+  ${flexCenter};
+  ${FONT_STYLE.PRETENDARD.H7_MEDIUM};
+  color: ${theme.PALLETE.primary.main};
+  background: #fff2e8;
+  border-radius: 5px;
+  gap: 10px;
+  margin: 0 10px 0 0;
+`;
+export const ProfileUserXp = styled.div`
+  width: 70px;
+  height: 28px;
+  ${flexCenter};
+  ${FONT_STYLE.PRETENDARD.H7_MEDIUM};
+  color: ${theme.PALLETE.secondary};
+  border-radius: 5px;
+  background: #dff7f1;
+`;
+export const ProfileUserCreateAt = styled.p`
+  ${FONT_STYLE.PRETENDARD.H7_REGULAR};
+  margin: 5px 0 0 0;
+`;
+
+export const ProfileContainer = styled.div`
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid ${theme.PALLETE.gray[300]};
+  display:flex;
+  flex-direction:column;
+  gap: 5px;
+`;
+
+export const ChangeButton = styled.button`
+text-align:left;
+`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import {
   HeaderOuter,
@@ -17,17 +17,26 @@ import {
   BottomRow,
   Nav,
   NavItem,
+  LogoWrap,
 } from "./style";
+import ProfilePopUp from "./ProfilePopUp";
 
 const Header = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <HeaderOuter>
       <HeaderInner>
         {/* Top Row */}
         <TopRow>
           <LogoArea to="/">
-            <LogoIcon aria-hidden>🧰</LogoIcon>
-            <LogoText>프리고고</LogoText>
+            <LogoWrap>
+              <LogoIcon
+                src="\assets\logos\frigogo_logo.png"
+                alt="로고 아이콘"
+                aria-hidden
+              />
+              <LogoText>프리고고</LogoText>
+            </LogoWrap>
           </LogoArea>
 
           <SearchArea>
@@ -43,10 +52,14 @@ const Header = () => {
               <RightText>로그인</RightText>
             </RightLink>
 
-            <RightLink to="/profile">
+            <button onClick={() => setIsSidebarOpen(true)}>
               <RightIcon aria-hidden>▦</RightIcon>
               <RightText>프로필</RightText>
-            </RightLink>
+            </button>
+            <ProfilePopUp
+              isOpen={isSidebarOpen}
+              onClose={() => setIsSidebarOpen(false)}
+            />
           </RightArea>
         </TopRow>
 
